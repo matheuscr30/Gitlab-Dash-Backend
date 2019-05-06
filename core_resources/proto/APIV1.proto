@@ -1,0 +1,109 @@
+syntax = 'proto3';
+import "google/protobuf/timestamp.proto";
+package GITLAB_DASH_API;
+
+message MergeRequest {
+    int32 id = 1;
+    int32 project_id = 2;
+    string title = 3;
+    string description = 4;
+    string state = 5;
+    int32 author_id = 6;
+    string web_url = 7;
+    google.protobuf.Timestamp merged_at = 8;
+    google.protobuf.Timestamp created_at = 9;
+}
+
+message MergeRequestList {
+    repeated MergeRequest merge_requests = 1;
+}
+
+message Commit {
+    string id = 1;
+    int32 project_id = 2;
+    string title = 3;
+    int32 committer_id = 4;
+    google.protobuf.Timestamp committed_date = 5;
+    string message = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
+
+message CommitList {
+    repeated Commit commits = 1;
+}
+
+message Issue {
+    int32 id = 1;
+    int32 project_id = 2;
+    string title = 3;
+    string state = 4;
+    string description = 5;
+    int32 author_id = 6;
+    string web_url = 7;
+    google.protobuf.Timestamp closed_at = 8;
+    google.protobuf.Timestamp created_at = 9;
+}
+
+message IssueList {
+    repeated Issue issues = 1;
+}
+
+message Project {
+    int32 id = 1;
+    string name = 2;
+    string name_with_namespace = 3;
+    string description = 4;
+    string default_branch = 5;
+    string visibility = 6;
+    string web_url = 7;
+    string avatar_url = 8;
+    google.protobuf.Timestamp created_at = 9;
+    repeated Issue issues = 10;
+    repeated Commit commits = 11;
+}
+
+message ProjectList {
+    repeated Project projects = 1;
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string username = 3;
+    string email = 4;
+    string state = 5;
+    string avatar_url = 6;
+    string web_url = 7;
+    bool is_admin = 8;
+    google.protobuf.Timestamp created_at = 9;
+    repeated Issue issues = 10;
+    repeated Commit commits = 11;
+    repeated MergeRequest merge_requests = 12;
+    repeated Project projects = 13;
+}
+
+message UserList {
+    repeated User users = 1;
+}
+
+message Group {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    string visibility = 4;
+    string web_url = 5;
+}
+
+message GroupList {
+    repeated Group groups = 1;
+}
+
+message Branch {
+    int32 id = 1;
+    string name = 2;
+    bool can_push = 3;
+}
+
+message BranchList {
+    repeated Branch branches = 1;
+}
