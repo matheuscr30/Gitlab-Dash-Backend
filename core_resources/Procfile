@@ -1,0 +1,2 @@
+release: python manage.py migrate --settings=gitlab_dash_backend.settings.production;
+web: python manage.py collectstatic --noinput --settings=gitlab_dash_backend.settings.production; gunicorn gitlab_dash_backend.wsgi --timeout 60 --log-file=-
