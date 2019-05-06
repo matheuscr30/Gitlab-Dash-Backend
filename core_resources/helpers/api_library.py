@@ -66,9 +66,9 @@ class APIConverter:
             aux_commits = []
 
             if 'all' in kwargs and kwargs['all']:
-                db_commits = Commit.objects.filter(_author=db_user).order_by('-_authored_date')
+                db_commits = Commit.objects.filter(_committer=db_user).order_by('-_committed_date')
             else:
-                db_commits = Commit.objects.filter(_author=db_user).order_by('-_authored_date')[:5]
+                db_commits = Commit.objects.filter(_committer=db_user).order_by('-_committed_date')[:5]
 
             for db_commit in db_commits:
                 pb_commit = APIConverter.convert_to_pb_commit(db_commit)
